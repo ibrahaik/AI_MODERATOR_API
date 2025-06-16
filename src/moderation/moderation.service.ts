@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ModerationRecord } from 'src/database/entities/moderation-record.entity';
+import { ModerationRecord } from '../database/entities/moderation-record.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { ModerationModule } from './moderation/moderation.module';
 import { DatabaseModule } from './database/database.module';
 import { ApiKeyMiddleware } from './common/middleware/api-key.middleware';
-import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -12,7 +11,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     }),
     ModerationModule,
     DatabaseModule,
-    TypeOrmModule.forRootAsync({})
   ],
 })
 export class AppModule implements NestModule {
