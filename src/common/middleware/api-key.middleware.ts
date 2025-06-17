@@ -7,6 +7,10 @@ export class ApiKeyMiddleware implements NestMiddleware {
   constructor(private readonly configService: ConfigService) {}
 
   use(req: Request, res: Response, next: NextFunction) {
+
+    if (req.path === '/moderate/public') {
+      return next();
+    }
     const apiKeyHeader = req.headers['x-api-key'];
     const validApiKey = this.configService.get<string>('API_KEY');
 
