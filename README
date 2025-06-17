@@ -1,0 +1,116 @@
+# NetEthics 🧠🛡️
+
+**NetEthics** es una API REST de moderación de contenido desarrollada con tecnologías modernas del ecosistema Node.js. Utiliza la **Perspective API** de Google para detectar mensajes con toxicidad, amenazas o insultos, permitiendo a plataformas sociales o apps integrar análisis de texto en tiempo real.
+
+---
+
+## 🚀 Tecnologías utilizadas
+
+- **NestJS**: Framework backend modular para Node.js.
+- **TypeScript**: Tipado estático robusto para mayor seguridad en el desarrollo.
+- **PostgreSQL**: Base de datos relacional para almacenar resultados de moderación.
+- **TypeORM**: ORM para la gestión de entidades y queries a la base de datos.
+- **Docker + Docker Compose**: Contenerización del backend y base de datos para despliegues consistentes.
+- **Perspective API**: Servicio de Google que proporciona puntuaciones de toxicidad, insulto y amenaza.
+- **Jest + Supertest**: Tests unitarios y de integración.
+- **ThrottlerModule** (NestJS): Sistema de rate limiting para evitar abusos de la API.
+- **Swagger** (opcional): Documentación automática si se habilita.
+- **ESLint + Prettier**: Estándares de código y formateo consistente.
+- **dotenv**: Manejo de variables de entorno.
+
+---
+
+## 🧠 Funcionalidades principales
+
+- 🔐 **Protección por API Key** (middleware personalizado)
+- 📊 **Detección de contenido tóxico**: analiza mensajes usando IA
+- 📝 **Almacenamiento de resultados**: mensajes moderados se guardan con puntuaciones y fechas
+- 🔁 **Endpoint público y privado** con control de tráfico (limitado a 10 peticiones/min)
+- 📦 **Totalmente dockerizado**: ideal para producción o testing local
+- ✅ **Tests incluidos**: cobertura unitaria y end-to-end
+
+---
+
+## 📦 Instalación y uso local
+
+### 1. Clonar repositorio
+
+bash
+git clone https://github.com/ibrahaik/AI_MODERATOR_API
+cd content-moderator-api
+
+
+### 2. Variables de entorno
+
+Crear un archivo .env con las siguientes variables:
+
+PERSPECTIVE_API_KEY=tu_clave_de_google
+API_KEY=clave_personalizada
+
+
+### 3. Ejecutar con Docker
+
+bash
+docker-compose up --build
+
+
+La API quedará accesible en: http://localhost:3000
+
+---
+
+## 🧪 Testing
+
+bash
+npm run test
+npm run test:e2e
+
+
+---
+
+## 🔥 Ejemplo de uso
+
+http
+POST /moderate/public
+Content-Type: application/json
+
+{
+  "message": "You're such an idiot"
+}
+
+
+Respuesta:
+
+json
+{
+  "message": "You're such an idiot",
+  "flagged": true,
+  "scores": {
+    "toxicity": 0.94,
+    "insult": 0.91,
+    "threat": 0.01
+  }
+}
+
+
+---
+
+## 🧩 Casos de uso
+
+- Moderación de comentarios en redes sociales, foros o chats
+- Análisis de lenguaje ofensivo en plataformas educativas o laborales
+- Integración en apps de soporte para evitar respuestas agresivas
+- Protección de comunidades en tiempo real en juegos o streaming
+
+---
+
+## ⚠️ Notas
+
+- La opción synchronize: true en TypeORM está activa solo para desarrollo.
+- La API de Google puede tener límites de uso gratuito.
+
+---
+
+## 🧑‍💻 Autor
+
+Desarrollado por Ibrahim Haik https://es.linkedin.com/in/ibrahim-haik-a12654226
+
