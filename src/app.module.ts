@@ -3,7 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { ModerationModule } from './moderation/moderation.module';
 import { DatabaseModule } from './database/database.module';
 import { ApiKeyMiddleware } from './common/middleware/api-key.middleware';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -20,6 +21,12 @@ import { ThrottlerModule } from '@nestjs/throttler';
         }
       ]
     })
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
   ],
 })
 export class AppModule implements NestModule {
